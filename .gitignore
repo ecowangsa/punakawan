@@ -1,0 +1,14 @@
+# Generated run transcript (the page fetches it); not source. See references/transcript-schema.md
+sidang.json
+
+# Playwright smoke-test artifacts
+.playwright-mcp/
+smoke-*.png
+fullcontainer-*.png
+
+# preview server runtime state
+.preview.lock
+.preview.log
+
+# brainstorming visual-companion mockups
+.superpowers/
