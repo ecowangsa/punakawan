@@ -90,8 +90,25 @@ Verdict (TL;DR): <the decision>. Certainty: firm | lean | shaky. Flips if: <…>
 ## Per-role        - one-line stance + certainty per lens
 ```
 
-When you invoke it from a brainstorming fork, the verdict comes back as a
-**proposal you approve** - you stay the decider, not the panel.
+### Pairing with brainstorming
+
+`brainstorming` and Punakawan are **separate skills in the same session -
+brainstorming never launches the panel for you.** It explores intent, offers 2-3
+approaches, and heads toward a plan on its own. Punakawan is opt-in: reach for it
+when one of those forks is a *hard technical trade-off* you'd rather not call
+alone (not "which name?" or "which DB?" - those stay conversational).
+
+- **Before you type `/punakawan`:** nothing panel-related happens. The fork just
+  sits in the conversation and brainstorming continues its normal flow.
+- **When you type `/punakawan` (bare):** the panel reads that fork straight from
+  the conversation (no retyping), confirms it in one line, then runs Round 1 →
+  gate → Semar. It hands back **only** the compressed verdict (TL;DR + certainty
+  + "flips if") as a **proposal you approve** - you stay the decider, not the
+  panel, and brainstorming's approval gate still governs. Then brainstorming
+  carries the decided fork onward to the plan.
+
+You can type the bare `/punakawan` at the main prompt *or* into a brainstorming
+question's "chat about this" box - both are real invocations.
 
 ## The lenses and presets
 
