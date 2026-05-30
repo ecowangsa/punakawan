@@ -4,9 +4,9 @@
 > calls and return one sharp verdict - entirely in-session, nothing leaves your
 > machine.
 
-![The Punakawan panel — ten wayang lenses convened in session: Kresna, Arjuna, Bima, Gareng, Petruk, Semar (center), Bagong, Sadewa, Gatotkaca, and Puntadewa](assets/wayang/landscape.png)
+![The Punakawan panel - ten wayang lenses convened in session: Kresna, Arjuna, Bima, Gareng, Petruk, Semar (center), Bagong, Sadewa, Gatotkaca, and Puntadewa](assets/wayang/landscape.png)
 
-**Punakawan** is a [Claude Code](https://claude.com/claude-code) skill. When you
+**Punakawan** is a [Claude Code](https://claude.com/claude-code) plugin. When you
 face a real trade-off - *"split this service or not?"*, *"is this
 over-engineered?"*, *"event-sourced vs CRUD?"* - it convenes a few Claude
 sub-agents, each arguing one expert perspective, runs a short structured debate,
@@ -48,30 +48,62 @@ the deliberation.
 
 ## Install
 
-It's a personal skill - clone it into your Claude Code skills directory:
+Punakawan is a Claude Code **plugin**, installed from its own marketplace (this
+repo). In Claude Code:
 
-```sh
-git clone https://github.com/ecowangsa/punakawan ~/.claude/skills/punakawan
+```
+/plugin marketplace add ecowangsa/punakawan
+/plugin install punakawan@punakawan
 ```
 
-Restart Claude Code (or start a new session) and the skill is available.
+Start a new session and the panel is available.
+
+> **Upgrading from the old standalone skill?** Earlier it was installed by
+> `git clone`-ing into `~/.claude/skills/punakawan`. Remove that copy first so it
+> doesn't shadow the plugin, then run the two commands above:
+> ```sh
+> rm -rf ~/.claude/skills/punakawan
+> ```
+
+### Staying up to date
+
+Because this is a third-party marketplace, Claude Code won't pop up an update
+notice on its own (that automatic check is reserved for official Anthropic
+marketplaces). To see whether a newer version exists and pick it up, refresh the
+catalog and open the plugin manager:
+
+```
+/plugin marketplace update punakawan
+/plugin
+```
+
+The `/plugin` manager shows your installed version against what's available; apply
+the update there, then `/reload-plugins` (or restart). Newer Claude Code builds
+also accept the one-shot `/plugin update punakawan@punakawan`. The current version
+is the `version` field in [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json);
+see [`CHANGELOG.md`](CHANGELOG.md) for what changed.
 
 ## Use
 
-Three ways to invoke it:
+Plugin skills are namespaced `plugin:skill`, so the typed command is
+**`/punakawan:panel`**. The plain-language trigger is unaffected - Claude picks the
+panel up from its description, exactly as before. Invoke it any of these ways:
 
-- **With a question** (the normal case):
+- **In plain language** (the normal case) - describe the trade-off and name the
+  panel; Claude convenes it on its own:
   ```
-  /punakawan should we move auth into its own service, or keep it in the monolith?
+  Should we move auth into its own service, or keep it in the monolith? Ask the punakawan.
   ```
-  You can also just describe a trade-off in plain language and Claude picks the
-  skill up.
+- **Explicitly**, with the namespaced command:
+  ```
+  /punakawan:panel should we move auth into its own service, or keep it in the monolith?
+  ```
 - **Bare, right after a `brainstorming` session offered you approaches** -
   Punakawan reads the fork from the conversation, so you don't retype it:
   ```
-  /punakawan
+  /punakawan:panel
   ```
-- **`/punakawan help`** - prints usage without convening.
+- **`/punakawan:panel help`** - prints usage without convening.
 
 Before it runs, Punakawan **confirms the question** in one line ("Convening on:
 A vs B vs C - yes?") and **offers an optional live browser view** of the debate;
@@ -98,16 +130,16 @@ approaches, and heads toward a plan on its own. Punakawan is opt-in: reach for i
 when one of those forks is a *hard technical trade-off* you'd rather not call
 alone (not "which name?" or "which DB?" - those stay conversational).
 
-- **Before you type `/punakawan`:** nothing panel-related happens. The fork just
-  sits in the conversation and brainstorming continues its normal flow.
-- **When you type `/punakawan` (bare):** the panel reads that fork straight from
+- **Before you type `/punakawan:panel`:** nothing panel-related happens. The fork
+  just sits in the conversation and brainstorming continues its normal flow.
+- **When you type `/punakawan:panel` (bare):** the panel reads that fork straight from
   the conversation (no retyping), confirms it in one line, then runs Round 1 →
   gate → Semar. It hands back **only** the compressed verdict (TL;DR + certainty
   + "flips if") as a **proposal you approve** - you stay the decider, not the
   panel, and brainstorming's approval gate still governs. Then brainstorming
   carries the decided fork onward to the plan.
 
-You can type the bare `/punakawan` at the main prompt *or* into a brainstorming
+You can type the bare `/punakawan:panel` at the main prompt *or* into a brainstorming
 question's "chat about this" box - both are real invocations.
 
 ## The lenses and presets

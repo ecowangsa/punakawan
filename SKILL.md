@@ -1,5 +1,6 @@
 ---
-name: punakawan
+name: panel
+version: 0.1.0
 description: |-
   Convene the Punakawan - a panel of distinct wayang-character lenses (Threat
   Modeler, Cost Realist, Change Steward, Restraint Keeper, Scale Forecaster,
@@ -59,16 +60,16 @@ restated.
 
 1. **Get the question - infer it from context if the user didn't restate it.**
    Both this skill and `brainstorming` run in the same session under you, so when
-   the user invokes `/punakawan` right after brainstorming offered approaches (or
+   the user invokes `/punakawan:panel` right after brainstorming offered approaches (or
    after they raised an "X vs Y"), that fork is already in the conversation -
    **curate it yourself; never make the user retype it.** Echo the inferred fork
    in one line and confirm before composing ("Convening on: A vs B vs C - yes?").
-   Explicit args only *scope or override* (e.g. `/punakawan focus on the security
-   angle`). If invoked as `/punakawan help` (or `--help`), print a brief usage
+   Explicit args only *scope or override* (e.g. `/punakawan:panel focus on the security
+   angle`). If invoked as `/punakawan:panel help` (or `--help`), print a brief usage
    (what it does, the 4 presets, the flags, and that a bare invocation picks up
    the current fork) and stop - do not convene. If nothing decidable is on the
    table and no args are given, ask what to deliberate.
-   **Never respond to an invocation by refusing to engage.** A bare `/punakawan`
+   **Never respond to an invocation by refusing to engage.** A bare `/punakawan:panel`
    may be typed at the prompt OR into a brainstorming question's free-text
    ("chat about this") box - either way it is a real invocation, so do something.
    If the only fork was already deliberated this session, do NOT decline and
@@ -100,7 +101,7 @@ The `brainstorming` skill explores intent and proposes 2-3 approaches; when one
 fork is a **hard technical trade-off the user can't adjudicate alone** (not a
 preference like "which name?" or "which DB?" - those stay conversational),
 brainstorming may hand *that one fork* to the Punakawan. There is no code seam;
-it is the same Skill tool in the same session. The user just invokes `/punakawan`
+it is the same Skill tool in the same session. The user just invokes `/punakawan:panel`
 (bare); **step 1 above owns how the fork is inferred from context and confirmed**
 (the user never retypes the approaches). This section adds only the
 handoff-specific rules:

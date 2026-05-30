@@ -1,0 +1,24 @@
+{
+  "name": "punakawan",
+  "displayName": "Punakawan",
+  "description": "Convene the Punakawan - a panel of distinct wayang-character lenses that debate a hard technical question and return one synthesized Semar verdict: consensus, the real disagreements, and a recommendation with a certainty band. Entirely in-session; nothing leaves the machine.",
+  "version": "0.1.0",
+  "author": {
+    "name": "ecowangsa",
+    "email": "ekodahni@gmail.com",
+    "url": "https://github.com/ecowangsa"
+  },
+  "homepage": "https://github.com/ecowangsa/punakawan",
+  "repository": "https://github.com/ecowangsa/punakawan",
+  "license": "MIT",
+  "keywords": [
+    "decision-support",
+    "expert-panel",
+    "architecture",
+    "code-review",
+    "second-opinion",
+    "wayang",
+    "claude-code"
+  ],
+  "skills": ["./"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "punakawan",
+  "description": "Single-plugin marketplace for Punakawan - a panel of expert advisors for Claude Code.",
+  "owner": {
+    "name": "ecowangsa",
+    "email": "ekodahni@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "punakawan",
+      "source": "./",
+      "description": "Convene the Punakawan - distinct wayang-character lenses debate a hard call and return one Semar verdict, with a certainty band. Invoked as /punakawan:panel."
+    }
+  ]
+}
