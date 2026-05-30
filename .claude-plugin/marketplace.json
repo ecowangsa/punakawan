@@ -1,6 +1,6 @@
 {
-  "name": "punakawan",
-  "description": "Single-plugin marketplace for Punakawan - a panel of expert advisors for Claude Code.",
+  "name": "wayang",
+  "description": "wayang - wayang-themed Claude Code plugins by ecowangsa. Currently hosts Punakawan, a panel of expert advisors.",
   "owner": {
     "name": "ecowangsa",
     "email": "ekodahni@gmail.com"

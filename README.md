@@ -53,7 +53,7 @@ repo). In Claude Code:
 
 ```
 /plugin marketplace add ecowangsa/punakawan
-/plugin install punakawan@punakawan
+/plugin install punakawan@wayang
 ```
 
 Start a new session and the panel is available.
@@ -73,13 +73,13 @@ marketplaces). To see whether a newer version exists and pick it up, refresh the
 catalog and open the plugin manager:
 
 ```
-/plugin marketplace update punakawan
+/plugin marketplace update wayang
 /plugin
 ```
 
 The `/plugin` manager shows your installed version against what's available; apply
 the update there, then `/reload-plugins` (or restart). Newer Claude Code builds
-also accept the one-shot `/plugin update punakawan@punakawan`. The current version
+also accept the one-shot `/plugin update punakawan@wayang`. The current version
 is the `version` field in [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json);
 see [`CHANGELOG.md`](CHANGELOG.md) for what changed.
 

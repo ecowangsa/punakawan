@@ -33,5 +33,5 @@ rm -rf ~/.claude/skills/punakawan
 
 ```
 /plugin marketplace add ecowangsa/punakawan
-/plugin install punakawan@punakawan
+/plugin install punakawan@wayang
 ```
