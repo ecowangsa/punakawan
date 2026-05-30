@@ -278,7 +278,9 @@ but it keeps the transcripts safe to keep.)
 
 ## Optional: visual simulation (offer first, never auto-launch)
 
-A browser replay of a deliberation lives in `index.html` (served at the root `/`) -
+A browser replay of a deliberation lives in `index.html` at the **plugin root**
+(`${CLAUDE_PLUGIN_ROOT}`, alongside `preview.sh` - one level up from this skill
+folder), served at the root `/` -
 a wayang-themed, autoplay node-graph simulation of one sidang. It is a companion
 for *showing* a run, not part of the deliberation itself. Treat it exactly like
 brainstorming's visual companion: **ask the user whether they want to see it; do
@@ -288,7 +290,7 @@ debate live requires writing the transcript incrementally *as the run happens*.
 If they **decline**, run the whole deliberation in the terminal and do **not**
 start a server or write `sidang.json` at all (no preview overhead). If they
 **accept** and you will feed it a real run, start it with
-**`bash preview.sh start --live`** - the `--live` flag makes the page poll for
+**`bash "${CLAUDE_PLUGIN_ROOT}/preview.sh" start --live`** - the `--live` flag makes the page poll for
 `sidang.json` (without it the page just shows the bundled sample and never polls,
 which is the right default for a pure showcase). It binds a dynamic free port on
 loopback, kills any prior preview first (so at most one ever runs), and prints the
@@ -296,11 +298,12 @@ URL to share. Do not open the `file://` path directly, and do not hardcode a por
 **Never auto-stop the server when the sidang finishes** (`status:done` means the
 deliberation ended, not that the user finished reading - they may still be
 re-reading the verdict); the next `preview.sh start` reaps it, or stop it
-explicitly with `bash preview.sh stop`. Replace em-dashes / en-dashes with a plain
+explicitly with `bash "${CLAUDE_PLUGIN_ROOT}/preview.sh" stop`. Replace em-dashes / en-dashes with a plain
 hyphen in any text the simulation displays.
 
 **Showing a real run.** To visualize the deliberation you just ran (rather than
-the bundled sample), write the run as `sidang.json` next to the HTML, then serve
+the bundled sample), write the run as `sidang.json` next to `index.html` at the
+plugin root (`${CLAUDE_PLUGIN_ROOT}/sidang.json`), then serve
 with `--live` and share the URL. The page polls `sidang.json` (until it appears)
 and plays it back. This is a **one-time side-output written after the Semar
 synthesis** - it is opt-in and must never influence any deliberation decision. The

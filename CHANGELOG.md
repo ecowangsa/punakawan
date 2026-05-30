@@ -12,7 +12,9 @@ marketplace (this repo) so the installed version is tracked and updates are
 visible through `/plugin`.
 
 - Added `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`; the
-  skill loads from the repo root (`"skills": ["./"]`), so no files moved.
+  skill lives at `skills/panel/SKILL.md` (with its `roles.md` and `references/`),
+  the layout Claude Code requires for a plugin to register the skill. The browser
+  showcase (`index.html`, `preview.sh`, `assets/`) stays at the repo root.
 - The typed command is now namespaced `/punakawan:panel` (plugin skills are always
   `plugin:skill`). The plain-language trigger ("convene the punakawan", "second
   opinion", ...) is unchanged - it keys off the skill description, not the command.

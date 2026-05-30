@@ -175,8 +175,8 @@ on Sonnet, `medium`/`high` escalate all lenses to Opus at that reasoning effort;
 3. **Semar's synthesis** - a verdict-first report: the decision, the certainty,
    the real disagreement, and the conditions that would flip it.
 
-See [`references/example-run.md`](references/example-run.md) for one complete,
-calibrated run.
+See [`skills/panel/references/example-run.md`](skills/panel/references/example-run.md)
+for one complete, calibrated run.
 
 ### A real example: the panel changing its mind
 
