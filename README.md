@@ -129,8 +129,9 @@ them by what the question actually risks (the Contrarian is seated by default):
 
 Four presets pick a sensible default roster by question type: `general`
 (default), `audit`, `design`, `safeguard`. Flags: `--preset`, `--roles a,b,c`,
-`--no-contrarian`, `--deep` (run lenses on Opus), `--quick` (skip the debate
-round).
+`--no-contrarian`, `--effort <low|medium|high>` (one uniform dial: `low` default
+on Sonnet, `medium`/`high` escalate all lenses to Opus at that reasoning effort;
+`--deep` is an alias for `--effort high`), `--quick` (skip the debate round).
 
 ## How it decides (the flow)
 

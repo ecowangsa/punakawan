@@ -42,6 +42,14 @@ headcount and not a vote. That is why this skill **never tallies or averages**
 votes, caps the panel small, seats a standing skeptic, and leans on a sharp
 synthesis. Treat "4 of 5 agree" as *one framing repeated*, not as evidence.
 
+**Effort changes depth, not independence.** Reasoning effort (and the model tier
+it selects) is a single dial applied **uniformly** to the whole panel - never
+per-lens. A higher-effort run thinks harder on the same weights; it does **not**
+make a member a better estimator or a tie-breaker, so never weight one voice over
+another by its effort. Heterogeneous per-lens effort is forbidden for the same
+reason voting is: it manufactures a hierarchy among voices the synthesis must
+treat as equal. Coverage comes from the persona, not the compute budget.
+
 **This file is the single source of truth for the control flow** (composition,
 rounds, the gate, synthesis). `roles.md` owns the role catalog, the per-role
 prompt template, and the output contracts - referenced here by name, never
@@ -71,6 +79,13 @@ restated.
 2. If the question is genuinely **trivial or one-dimensional** (one clear answer,
    no real trade-off), **do not convene at all** - say so and answer directly.
    The Punakawan earns its cost only on real trade-off decisions.
+   **Right tool, right moment** (the panel is one of several aids - don't reflexively
+   reach for it): convene when there is a **hard trade-off to adjudicate before
+   committing** and you'd otherwise be flipping a coin. *Skip it and use a sibling*
+   when the work is a different shape: a single clear answer → just answer; still
+   exploring what the user even wants → `brainstorming`; building/executing a known
+   plan end-to-end → `dalang`; needing external facts → `deep-research`. The panel
+   costs 4-5 subagents, so spend it only where distinct lenses actually change the call.
 3. Otherwise: **Compose** → **Round 1** (parallel answers) → **Gate** (debate
    only if the panel actually splits) → **Semar synthesis**.
 
@@ -132,8 +147,20 @@ this table - it is the only place composition is defined:
 **Overrides** (honor if the user gave any): `--preset <audit|design|safeguard|`
 `general>` forces one row; `--roles a,b,c` sets an explicit roster (still add
 `contrarian` unless `--no-contrarian`); `--no-contrarian` drops the skeptic;
-`--deep` runs lens subagents on **Opus** (synthesis is always you); `--quick`
-forces the no-debate path (R1 + mandatory contrarian pass + synthesis only).
+`--effort <low|medium|high>` sets how hard the lenses think - one dial applied
+**uniformly** to every seated lens (synthesis is always you, on the session model).
+`low` (the default) runs lenses on **Sonnet** to keep the panel cheap; `medium`
+and `high` escalate them to **Opus** at the matching reasoning effort. `--deep` is
+a kept alias for `--effort high`. `--quick` is an orthogonal control-flow flag that
+forces the no-debate path (R1 + mandatory contrarian pass + synthesis only),
+independent of the effort dial.
+The vocabulary stays exactly three rungs: `high` maps to the **highest reasoning
+ceiling the session model offers** (xhigh, max, whatever it is called) - never
+grow a fourth rung name. `--effort` tunes per-lens *depth* only, **not**
+orchestration: it is orthogonal to ultracode / Workflow fan-out, and the panel
+never auto-converts into a workflow. Deep adjudication lives in the synthesis,
+which is you (Semar) on the session model - raise your own session effort for
+that, not the lenses.
 To pin a roster explicitly, e.g. a frontend decision:
 `--roles consumer,cost,evolution` (add `threat` if auth/data is in play).
 
@@ -143,7 +170,10 @@ State the chosen roster and why in one line before dispatching, e.g.
 ## Step 2 - Round 1: parallel answers
 
 Dispatch **one `general-purpose` subagent per role, all in a single message** so
-they run in parallel. Default model **sonnet** (or **opus** if `--deep`). Give
+they run in parallel. The `--effort` dial picks the model **uniformly** for every
+lens: `low` (the default) = **Sonnet**, `medium` / `high` = **Opus** at that
+reasoning effort (`--deep` = `--effort high`). Never set effort per-lens - it is
+one panel-wide dial. Give
 each subagent: the question, the context **you have curated** (see Privacy), and
 its filled-in **Round-1 prompt template from `roles.md`** - including the
 **Round-1 output contract** defined there (RECOMMENDATION / TOP REASONS /
@@ -200,7 +230,11 @@ navigation labels in plain English:
 Certainty: <firm | lean | shaky>. Flips if: <the one condition that would change it>.
 
 ## Consensus
-<what all or most members agree on, post-debate>
+<what all or most members agree on, post-debate. If the gate CONVERGED (no
+ split, debate skipped), you MUST open this section by telling the user plainly
+ that agreement here is **coverage, not strong evidence** - the members are one
+ shared model, so a near-unanimous panel is *one framing repeated*, not N
+ independent confirmations. State how the mandatory contrarian pass fared.>
 
 ## Disagreement
 <the genuine forks: who argued what, and the crux of why they differ. Name the
@@ -218,7 +252,9 @@ Certainty: <firm | lean | shaky>. Flips if: <the one condition that would change
 ```
 
 If a member changed its mind in the debate, prefer its revised stance and note
-the shift if it matters. Treat agreement as coverage, not as a vote count.
+the shift if it matters. Treat agreement as coverage, not as a vote count - and
+when the panel converged, say so to the user's face per the Consensus note above,
+rather than letting near-unanimity read as a strong independent signal it is not.
 
 ## Privacy & safety
 
