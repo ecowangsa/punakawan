@@ -58,6 +58,12 @@ repo). In Claude Code:
 
 Start a new session and the panel is available.
 
+`ecowangsa/punakawan` is the **GitHub repo path**, used only for that one-time
+`marketplace add`. After that, the marketplace is known by its **name** - `wayang`
+(set in `marketplace.json`) - which is why you install and update with
+`punakawan@wayang` and `marketplace update wayang`, not the repo path. It is the
+same pattern as `git remote add origin <url>`, then `git fetch origin`.
+
 > **Upgrading from the old standalone skill?** Earlier it was installed by
 > `git clone`-ing into `~/.claude/skills/punakawan`. Remove that copy first so it
 > doesn't shadow the plugin, then run the two commands above:
