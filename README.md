@@ -48,21 +48,30 @@ the deliberation.
 
 ## Install
 
-Punakawan is a Claude Code **plugin**, installed from its own marketplace (this
-repo). In Claude Code:
+Punakawan is a Claude Code **plugin**, distributed from the shared **`wayang`**
+marketplace catalog - hosted in the [`ecowangsa/dalang`](https://github.com/ecowangsa/dalang)
+repo alongside its sibling **Dalang** (a phased-SDLC executor that calls this panel).
+In Claude Code:
 
 ```
-/plugin marketplace add ecowangsa/punakawan
+/plugin marketplace add ecowangsa/dalang
 /plugin install punakawan@wayang
 ```
 
-Start a new session and the panel is available.
+Start a new session and the panel is available. (Installing only Punakawan is fine -
+you are not obliged to install Dalang.)
 
-`ecowangsa/punakawan` is the **GitHub repo path**, used only for that one-time
-`marketplace add`. After that, the marketplace is known by its **name** - `wayang`
-(set in `marketplace.json`) - which is why you install and update with
-`punakawan@wayang` and `marketplace update wayang`, not the repo path. It is the
-same pattern as `git remote add origin <url>`, then `git fetch origin`.
+`ecowangsa/dalang` is the **GitHub repo path** of the `wayang` catalog, used only for
+that one-time `marketplace add`. After that, the marketplace is known by its **name** -
+`wayang` - which is why you install and update with `punakawan@wayang` and
+`marketplace update wayang`, not the repo path. It is the same pattern as
+`git remote add origin <url>`, then `git fetch origin`.
+
+> **Why not `ecowangsa/punakawan`?** Earlier releases added *this* repo as its own
+> `wayang` marketplace. Both puppets now share **one** `wayang` catalog (in
+> `ecowangsa/dalang`) so two repos can't claim the same marketplace name and collide.
+> This repo is still Punakawan's source - it is just referenced *by* that catalog now,
+> not added as a marketplace itself.
 
 > **Upgrading from the old standalone skill?** Earlier it was installed by
 > `git clone`-ing into `~/.claude/skills/punakawan`. Remove that copy first so it

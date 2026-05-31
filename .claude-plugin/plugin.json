@@ -2,7 +2,7 @@
   "name": "punakawan",
   "displayName": "Punakawan",
   "description": "Convene the Punakawan - a panel of distinct wayang-character lenses that debate a hard technical question and return one synthesized Semar verdict: consensus, the real disagreements, and a recommendation with a certainty band. Entirely in-session; nothing leaves the machine.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "ecowangsa",
     "email": "ekodahni@gmail.com",

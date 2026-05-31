@@ -5,6 +5,20 @@ Notable changes to Punakawan. The version users install is the `version` field i
 [semantic versioning](https://semver.org). To see your installed version and pick
 up updates, run `/plugin` in Claude Code.
 
+## 0.1.1 - 2026-05-31
+
+Marketplace consolidation - **packaging only, panel behavior unchanged.**
+
+- Removed this repo's standalone `.claude-plugin/marketplace.json`. Punakawan and its
+  sibling **Dalang** now share **one** `wayang` marketplace catalog, hosted in
+  [`ecowangsa/dalang`](https://github.com/ecowangsa/dalang), which references this repo
+  as the Punakawan plugin source. This removes the name collision that arose once a
+  second repo also defined a `wayang` marketplace.
+- **Install changed:** `/plugin marketplace add ecowangsa/dalang` then
+  `/plugin install punakawan@wayang` (was `marketplace add ecowangsa/punakawan`). The
+  marketplace name (`wayang`) and command (`/punakawan:panel`) are unchanged. Installing
+  Punakawan does not require installing Dalang.
+
 ## 0.1.0 - 2026-05-30
 
 First release packaged as a Claude Code **plugin**, distributed from its own
